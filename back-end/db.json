@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "id": "92e7b55d-14f1-4bd9-aba1-5547715316f9",
+      "email": "shaun@gmail.com",
+      "passwordHash": "$2b$10$/ybf.51uIVXl.r6jhzUHueGnsEZihA/MeiH31peQsINWGKG8cAjwO",
+      "info": {
+        "hairColor": "",
+        "favoriteFood": "",
+        "bio": ""
+      },
+      "isVerified": false
+    }
+  ]
+}

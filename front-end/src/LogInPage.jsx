@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useToken } from './useToken';
 
 export const LogInPage = () => {
+  const [token, setToken] = useToken();
+
   const [errorMessage, setErrorMessage] = useState('');
 
   const [emailValue, setEmailValue] = useState('');
@@ -12,7 +16,13 @@ export const LogInPage = () => {
   const navigate = useNavigate();
 
   const onLogInClicked = async () => {
-    alert('Log in not implemented yet');
+    const response = await axios.post('/api/log-in', {
+      email: emailValue,
+      password: passwordValue,
+    });
+    const { token } = response.data;
+    setToken(token);
+    navigate('/');
   }
 
   return (

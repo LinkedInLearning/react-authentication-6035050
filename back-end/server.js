@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 const { db, saveDb } = require('./db');
 
@@ -32,10 +33,22 @@ app.post('/api/sign-up', async (req, res) => {
     info: startingInfo,
     isVerified: false,
   })
-
   saveDb();
 
-  res.json({ id });
+  jwt.sign({
+    id,
+    email,
+    info: startingInfo,
+    isVerified: false,
+  }, process.env.JWT_SECRET, {
+    expiresIn: '2d',
+  }, (err, token) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    res.json({ token });
+  })
 });
 
 app.listen(3000, () => console.log('Server running on port 3000'));

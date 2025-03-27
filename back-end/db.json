@@ -10,6 +10,28 @@
         "bio": ""
       },
       "isVerified": false
+    },
+    {
+      "id": "618b45db-6a01-40d3-9c0a-285f0b7533fe",
+      "email": "shaun2@gmail.com",
+      "passwordHash": "$2b$10$LisnPdXjIS4b5HoA4FJD5.u0qyz2zViqS/Pcuaq/1AvL.jN05uHbG",
+      "info": {
+        "hairColor": "",
+        "favoriteFood": "",
+        "bio": ""
+      },
+      "isVerified": false
+    },
+    {
+      "id": "dd0b4008-a6f7-4490-bbb9-582df00edaad",
+      "email": "shaun3@gmail.com",
+      "passwordHash": "$2b$10$3c6iixnnah4TrvXkeuDnPuPyolfNkY5GIYUvnZdkvthXfiGAyV4ue",
+      "info": {
+        "hairColor": "",
+        "favoriteFood": "",
+        "bio": ""
+      },
+      "isVerified": false
     }
   ]
 }

@@ -51,4 +51,33 @@ app.post('/api/sign-up', async (req, res) => {
   })
 });
 
+app.post('/api/log-in', async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = db.users.find(user => user.email === email);
+  if (!user) return res.sendStatus(401);
+
+  const passwordIsCorrect = await bcrypt.compare(password, user.passwordHash);
+
+  if (passwordIsCorrect) {
+    const { id, email, info, isVerified } = user;
+    jwt.sign({
+      id,
+      email,
+      info,
+      isVerified,
+    }, process.env.JWT_SECRET, {
+      expiresIn: '2d',
+    }, (err, token) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+
+      res.json({ token });
+    })
+  } else {
+    res.sendStatus(401);
+  }
+})
+
 app.listen(3000, () => console.log('Server running on port 3000'));

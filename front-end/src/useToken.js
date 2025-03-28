@@ -1,14 +1,4 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { TokenContext } from './TokenContext';
 
-export const useToken = () => {
-  const [token, setTokenInternal] = useState(() => {
-    return localStorage.getItem('token');
-  });
-
-  const setToken = newToken => {
-    localStorage.setItem('token', newToken);
-    setTokenInternal(newToken);
-  }
-
-  return [token, setToken];
-}
+export const useToken = () => useContext(TokenContext);

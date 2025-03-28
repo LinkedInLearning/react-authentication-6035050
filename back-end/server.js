@@ -78,52 +78,6 @@ app.post('/api/log-in', async (req, res) => {
   } else {
     res.sendStatus(401);
   }
-});
-
-app.put('/api/users/:userId', (req, res) => {
-  const { authorization } = req.headers;
-  const { userId } = req.params;
-
-  if (!authorization) {
-    return res.status(401).json({ message: 'No authorization header sent' });
-  }
-
-  const user = db.users.find(user => user.id === userId);
-
-  if (!user) {
-    return res.sendStatus(404);
-  }
-
-  const token = authorization.split(' ')[1];
-
-  jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-    if (err) return res.status(401).json({ message: 'Unable to verify token' });
-
-    const { id } = decoded;
-
-    if (id !== userId) return res.status(403).json({ message: 'Not allowed to update that userid' });
-
-    const { favoriteFood, hairColor, bio } = req.body;
-    const updates = { favoriteFood, hairColor, bio };
-
-    user.info.favoriteFood = updates.favoriteFood || user.info.favoriteFood;
-    user.info.hairColor = updates.hairColor || user.info.hairColor;
-    user.info.bio = updates.bio || user.info.bio;
-
-    saveDb();
-
-    jwt.sign({
-      ...user
-    }, process.env.JWT_SECRET, {
-      expiresIn: '2d',
-    }, (err, token) => {
-      if (err) {
-        return res.status(500).send(err);
-      }
-
-      res.json({ token });
-    })
-  });
 })
 
 app.listen(3000, () => console.log('Server running on port 3000'));

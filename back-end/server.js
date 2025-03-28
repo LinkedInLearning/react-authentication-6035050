@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const { db, saveDb } = require('./db');
 
 const app = express();
+
 app.use(express.json());
 
 app.post('/api/sign-up', async (req, res) => {

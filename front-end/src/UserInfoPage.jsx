@@ -9,6 +9,10 @@ export const UserInfoPage = () => {
 
   const { id, email, info } = user;
 
+  const [token, setToken] = useToken();
+  console.log({ token });
+  console.log({ user });
+
   // These states are bound to the values of the text inputs
   // on the page (see JSX below). 
   const [favoriteFood, setFavoriteFood] = useState(info.favoriteFood || '');
@@ -38,10 +42,22 @@ export const UserInfoPage = () => {
   }, [showSuccessMessage, showErrorMessage]);
 
   const saveChanges = async () => {
-    // Send a request to the server to
-    // update the user's info with any changes we've
-    // made to the text input values
-    alert('Save functionality not implemented yet');
+    try {
+      const response = await axios.put(`/api/users/${id}`, {
+        favoriteFood,
+        hairColor,
+        bio,
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      const { token: newToken } = response.data;
+      setToken(newToken);
+      setShowSuccessMessage(true);
+    } catch (error) {
+      console.log(error);
+      setShowErrorMessage(true);
+    }
   }
 
   const logOut = () => {

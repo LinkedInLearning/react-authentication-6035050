@@ -5,9 +5,9 @@
       "email": "shaun@gmail.com",
       "passwordHash": "$2b$10$/ybf.51uIVXl.r6jhzUHueGnsEZihA/MeiH31peQsINWGKG8cAjwO",
       "info": {
-        "hairColor": "",
-        "favoriteFood": "",
-        "bio": ""
+        "hairColor": "Brown",
+        "favoriteFood": "Pizza",
+        "bio": "I like coding and also pizza"
       },
       "isVerified": false
     },

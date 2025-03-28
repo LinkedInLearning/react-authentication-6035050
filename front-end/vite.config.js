@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: '<your url here>',
+        target: 'https://automatic-space-memory-96gv4ggqw7pcxx4x-3000.app.github.dev/',
         changeOrigin: true,
       }
     }

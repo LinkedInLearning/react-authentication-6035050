@@ -22,7 +22,7 @@ export const LogInPage = () => {
     });
     const { token } = response.data;
     setToken(token);
-    navigate('/');
+    navigate('/', { replace: true });
   }
 
   return (

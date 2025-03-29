@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 const { db, saveDb } = require('./db');
+const { sendEmail } = require('./sendEmail');
 
 const app = express();
 
@@ -18,8 +19,8 @@ app.post('/api/sign-up', async (req, res) => {
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
-
   const id = uuidv4();
+  const verificationString = uuidv4();
 
   const startingInfo = {
     hairColor: '',
@@ -33,8 +34,22 @@ app.post('/api/sign-up', async (req, res) => {
     passwordHash,
     info: startingInfo,
     isVerified: false,
+    verificationString,
   })
   saveDb();
+
+  try {
+    await sendEmail({
+      to: email,
+      from: 'sw.linkedin.learning@gmail.com',
+      subject: 'Please verify your email',
+      text: `Thanks for signing up! To verify your email,
+      please click here: https://automatic-space-memory-96gv4ggqw7pcxx4x-5173.app.github.dev/verify-email/${verificationString}`,
+    })
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
 
   jwt.sign({
     id,

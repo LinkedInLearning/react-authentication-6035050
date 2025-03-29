@@ -21,6 +21,18 @@
         "bio": "Hello, this is just a filler bio"
       },
       "isVerified": false
+    },
+    {
+      "id": "eef16462-cd1b-4eef-a9ad-e6df5bc217d6",
+      "email": "sw.linkedin.learning+test1@gmail.com",
+      "passwordHash": "$2b$10$dFYTReSvhpg2eUvleSJDxefBeNtzMCZb6HxKr/j6qi.AWjaXNl.XS",
+      "info": {
+        "hairColor": "",
+        "favoriteFood": "",
+        "bio": ""
+      },
+      "isVerified": false,
+      "verificationString": "8067d495-48e4-453a-aa26-7bdc33a7dfa7"
     }
   ]
 }

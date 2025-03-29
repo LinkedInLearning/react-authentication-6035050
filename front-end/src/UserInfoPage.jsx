@@ -61,9 +61,8 @@ export const UserInfoPage = () => {
   }
 
   const logOut = () => {
-    // We'll want to log the user out here
-    // and send them to the "login page"
-    alert('Log out functionality not implemented yet');
+    setToken(undefined);
+    navigate('/log-in')
   }
 
   const resetValues = () => {

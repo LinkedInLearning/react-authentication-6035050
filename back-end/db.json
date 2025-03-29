@@ -12,24 +12,13 @@
       "isVerified": false
     },
     {
-      "id": "618b45db-6a01-40d3-9c0a-285f0b7533fe",
+      "id": "2d80b8ab-bcd5-4211-9a45-163074dae9b4",
       "email": "shaun2@gmail.com",
-      "passwordHash": "$2b$10$LisnPdXjIS4b5HoA4FJD5.u0qyz2zViqS/Pcuaq/1AvL.jN05uHbG",
+      "passwordHash": "$2b$10$Qsh3YK3RCHHX8m/oSt2lT.aLA5VGcEeRIHvT71tSqxWFtBc80OGxq",
       "info": {
-        "hairColor": "",
-        "favoriteFood": "",
-        "bio": ""
-      },
-      "isVerified": false
-    },
-    {
-      "id": "dd0b4008-a6f7-4490-bbb9-582df00edaad",
-      "email": "shaun3@gmail.com",
-      "passwordHash": "$2b$10$3c6iixnnah4TrvXkeuDnPuPyolfNkY5GIYUvnZdkvthXfiGAyV4ue",
-      "info": {
-        "hairColor": "",
-        "favoriteFood": "",
-        "bio": ""
+        "hairColor": "Black",
+        "favoriteFood": "Chicken",
+        "bio": "Hello, this is just a filler bio"
       },
       "isVerified": false
     }

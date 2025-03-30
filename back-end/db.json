@@ -33,6 +33,18 @@
       },
       "isVerified": false,
       "verificationString": "8067d495-48e4-453a-aa26-7bdc33a7dfa7"
+    },
+    {
+      "id": "74a1e27f-c4e5-4588-a5d3-50c820c7d89b",
+      "email": "sw.linkedin.learning+test2@gmail.com",
+      "passwordHash": "$2b$10$DFu7HqSgS3lnYGHZM4fHJ.rolmEjJSvnjhRF1zDWqAVVxEGgg6tHe",
+      "info": {
+        "hairColor": "",
+        "favoriteFood": "",
+        "bio": ""
+      },
+      "isVerified": false,
+      "verificationString": "53b3dfe1-585d-41c4-a774-87dfbca9b05f"
     }
   ]
 }

@@ -15,7 +15,8 @@ function App() {
         <Routes>
           <Route path="/log-in" element={<LogInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
-          <Route element={<PrivateRoute redirectPath="log-in" isAllowed={!!user}/>}>
+          <Route path="/please-verify" element={<SignUpPage />} />
+          <Route element={<PrivateRoute redirectPath="log-in" isAllowed={!!user} />}>
             <Route path="/" element={<UserInfoPage />} />
           </Route>
         </Routes>

@@ -160,6 +160,31 @@ app.put('/api/verify-email', async (req, res) => {
 
     res.json({ token });
   })
+});
+
+app.put('/api/forgot-password/:email', async (req, res) => {
+  const { email } = req.params;
+
+  const user = db.users.find(user => user.email === email);
+  const passwordResetCode = uuidv4();
+
+  user.passwordResetCode = passwordResetCode;
+
+  try {
+    await sendEmail({
+      to: email,
+      from: 'sw.linkedin.learning@gmail.com',
+      subject: 'Password Reset',
+      text: `
+      To reset your password, click this link:
+      https://automatic-space-memory-96gv4ggqw7pcxx4x-5173.app.github.dev/reset-password/${passwordResetCode}
+      `
+    })
+    res.sendStatus(200);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
 })
 
 app.listen(3000, () => console.log('Server running on port 3000'));

@@ -142,4 +142,24 @@ app.put('/api/users/:userId', (req, res) => {
   });
 })
 
+app.put('/api/verify-email', async (req, res) => {
+  const { verificationString } = req.body;
+  const user = db.users.find(user => user.verificationString === verificationString);
+
+  if (!user) {
+    return res.status(401).json({ message: 'The email verification code is incorrect' });
+  }
+
+  user.isVerified = true;
+
+  const { id, email, info, isVerified } = user;
+  jwt.sign({ id, email, isVerified, info }, process.env.JWT_SECRET, { expiresIn: '2d' }, (err, token) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+
+    res.json({ token });
+  })
+})
+
 app.listen(3000, () => console.log('Server running on port 3000'));

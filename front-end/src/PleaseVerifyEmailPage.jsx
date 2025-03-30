@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const PleaseVerifyEmailPage = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
-      history.push('/');
+      navigate('/', { replace: true });
     }, 3000);
-  }, [history]);
+  }, [navigate]);
 
   return (
     <div className="content-container">

@@ -169,6 +169,7 @@ app.put('/api/forgot-password/:email', async (req, res) => {
   const passwordResetCode = uuidv4();
 
   user.passwordResetCode = passwordResetCode;
+  saveDb();
 
   try {
     await sendEmail({
@@ -185,6 +186,25 @@ app.put('/api/forgot-password/:email', async (req, res) => {
     console.log(e);
     res.sendStatus(500);
   }
+})
+
+app.put('/api/users/:passwordResetCode/reset-password', async (req, res) => {
+  const { passwordResetCode } = req.params;
+  const { newPassword } = req.body;
+
+  const user = db.users.find(user => user.passwordResetCode === passwordResetCode);
+
+  if (!user) {
+    return res.sendStatus(404);
+  }
+
+  const newPasswordHash = await bcrypt.hash(newPassword, 10);
+  user.passwordHash = newPasswordHash;
+  delete user.passwordResetCode;
+
+  saveDb();
+
+  res.sendStatus(200);
 })
 
 app.listen(3000, () => console.log('Server running on port 3000'));

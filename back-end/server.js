@@ -211,6 +211,19 @@ app.put('/api/users/:passwordResetCode/reset-password', async (req, res) => {
 app.get('/api/auth/google/url', (req, res) => {
   const url = getGoogleOauthUrl();
   res.status(200).json({ url });
-})
+});
+
+app.get('/auth/google/callback', async (req, res) => {
+  const { code } = req.query;
+
+  const oauthUserInfo = {};
+  const createdUser = {};
+  const { id, isVerified, email, info } = createdUser;
+
+  jwt.sign({ id, isVerified, email, info }, process.env.JWT_SECRET, (err, token) => {
+    if (err) return res.sendStatus(500);
+    res.redirect(`https://automatic-space-memory-96gv4ggqw7pcxx4x-5173.app.github.dev/login?token=${token}`);
+  })
+});
 
 app.listen(3000, () => console.log('Server running on port 3000'));

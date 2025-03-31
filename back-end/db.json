@@ -57,6 +57,12 @@
       },
       "isVerified": false,
       "verificationString": "33d59f82-8516-463f-bb74-e0ea724d1785"
+    },
+    {
+      "email": "sw.linkedin.learning@gmail.com",
+      "googleId": "102236708151654760634",
+      "isVerified": true,
+      "info": {}
     }
   ]
 }

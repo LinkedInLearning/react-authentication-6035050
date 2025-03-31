@@ -216,13 +216,13 @@ app.get('/api/auth/google/url', (req, res) => {
 app.get('/auth/google/callback', async (req, res) => {
   const { code } = req.query;
 
-  const oauthUserInfo = getGoogleUser(code);
-  const createdUser = updateOrCreateUserFromOauth(oauthUserInfo);
+  const oauthUserInfo = await getGoogleUser(code);
+  const createdUser = await updateOrCreateUserFromOauth(oauthUserInfo);
   const { id, isVerified, email, info } = createdUser;
 
   jwt.sign({ id, isVerified, email, info }, process.env.JWT_SECRET, (err, token) => {
     if (err) return res.sendStatus(500);
-    res.redirect(`https://automatic-space-memory-96gv4ggqw7pcxx4x-5173.app.github.dev/login?token=${token}`);
+    res.redirect(`https://automatic-space-memory-96gv4ggqw7pcxx4x-5173.app.github.dev/log-in?token=${token}`);
   })
 });
 

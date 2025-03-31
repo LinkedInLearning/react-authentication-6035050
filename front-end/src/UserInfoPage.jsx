@@ -74,7 +74,7 @@ export const UserInfoPage = () => {
   // And here we have the JSX for our component. It's pretty straightforward
   return (
     <div className="content-container">
-      <h1>Info for ______</h1>
+      <h1>Info for {email}</h1>
       {showSuccessMessage && <div className="success">Successfully saved user data!</div>}
       {showErrorMessage && <div className="fail">Uh oh... something went wrong and we couldn't save changes</div>}
       <label>

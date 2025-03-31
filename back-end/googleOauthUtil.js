@@ -29,4 +29,32 @@ const getGoogleUser = async (code) => {
   return response.data;
 }
 
-module.exports = { getGoogleOauthUrl, getGoogleUser };
+const updateOrCreateUserFromOauth = async (oauthUserInfo) => {
+  const {
+    id: googleId,
+    verified_email: isVerified,
+    email,
+  } = oauthUserInfo;
+
+  const existingUser = db.users.find(user => user.email === email);
+
+  if (existingUser) {
+    existingUser.googleId = googleId;
+    existingUser.isVerified = isVerified || existingUser.isVerified;
+    saveDb();
+    return existingUser;
+  } else {
+    const newUser = {
+      email,
+      googleId,
+      isVerified,
+      info: {},
+    };
+
+    db.users.push(newUser);
+    saveDb();
+    return newUser;
+  }
+}
+
+module.exports = { getGoogleOauthUrl, getGoogleUser, updateOrCreateUserFromOauth };

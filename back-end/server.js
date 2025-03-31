@@ -217,7 +217,7 @@ app.get('/auth/google/callback', async (req, res) => {
   const { code } = req.query;
 
   const oauthUserInfo = getGoogleUser(code);
-  const createdUser = {};
+  const createdUser = updateOrCreateUserFromOauth(oauthUserInfo);
   const { id, isVerified, email, info } = createdUser;
 
   jwt.sign({ id, isVerified, email, info }, process.env.JWT_SECRET, (err, token) => {

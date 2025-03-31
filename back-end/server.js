@@ -87,7 +87,7 @@ app.post('/api/log-in', async (req, res) => {
       expiresIn: '2d',
     }, (err, token) => {
       if (err) {
-        return res.status(500).send(err);
+        return res.sendStatus(500);
       }
 
       res.json({ token });

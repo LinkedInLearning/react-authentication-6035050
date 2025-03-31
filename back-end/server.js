@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 const { db, saveDb } = require('./db');
 const { sendEmail } = require('./sendEmail');
+const { getGoogleOauthUrl } = require('./googleOauthUtil');
 
 const app = express();
 
@@ -205,6 +206,11 @@ app.put('/api/users/:passwordResetCode/reset-password', async (req, res) => {
   saveDb();
 
   res.sendStatus(200);
+});
+
+app.get('/api/auth/google/url', (req, res) => {
+  const url = getGoogleOauthUrl();
+  res.status(200).json({ url });
 })
 
 app.listen(3000, () => console.log('Server running on port 3000'));

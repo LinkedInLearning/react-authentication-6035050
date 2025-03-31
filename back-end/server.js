@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 const { db, saveDb } = require('./db');
 const { sendEmail } = require('./sendEmail');
-const { getGoogleOauthUrl } = require('./googleOauthUtil');
+const { getGoogleOauthUrl, getGoogleUser, updateOrCreateUserFromOauth } = require('./googleOauthUtil');
 
 const app = express();
 
@@ -216,7 +216,7 @@ app.get('/api/auth/google/url', (req, res) => {
 app.get('/auth/google/callback', async (req, res) => {
   const { code } = req.query;
 
-  const oauthUserInfo = {};
+  const oauthUserInfo = getGoogleUser(code);
   const createdUser = {};
   const { id, isVerified, email, info } = createdUser;
 
